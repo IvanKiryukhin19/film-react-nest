@@ -21,7 +21,7 @@ import { RepositoryData } from './repository/repository.data';
     MongooseModule.forRoot(process.env.DATABASE_URL),
     // @todo: Добавьте раздачу статических файлов из public
     ServeStaticModule.forRoot({
-      rootPath: path.join(__dirname, '..', 'public', 'content', 'afisha'),
+      rootPath: path.join(__dirname, '..', 'public'),
     }),
   ],
   controllers: [FilmsController, OrderController],
