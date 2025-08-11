@@ -1,4 +1,5 @@
 import { ConfigModule } from '@nestjs/config';
+import 'dotenv/config';
 
 export const configProvider = {
   imports: [ConfigModule.forRoot()],

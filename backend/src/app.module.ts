@@ -13,7 +13,7 @@ import 'dotenv/config';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: '127.0.0.1',
       port: 5432,
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
