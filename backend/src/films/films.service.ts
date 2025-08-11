@@ -16,7 +16,7 @@ export class FilmsService {
 
   async findById(id: string) {
     const movie = await this.filmsData.findById(id);
-
-    return { total: movie.schedule.length, items: movie.schedule };
+    return { total: movie.length, items: movie };
+    //return { total: movie.schedule.length, items: movie.schedule };
   }
 }

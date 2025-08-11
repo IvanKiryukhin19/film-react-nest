@@ -5,10 +5,10 @@ export const configProvider = {
   provide: 'CONFIG',
   useValue: <AppConfig>{
     //TODO прочесть переменнные среды
-    database:{
-      driver:process.env.DATABASE_DRIVER,
-      url:process.env.DATABASE_URL
-    }
+    database: {
+      driver: process.env.DATABASE_DRIVER,
+      url: process.env.DATABASE_URL,
+    },
   },
 };
 
@@ -20,4 +20,3 @@ export interface AppConfigDatabase {
   driver: string;
   url: string;
 }
-
