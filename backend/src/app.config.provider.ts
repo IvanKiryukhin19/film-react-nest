@@ -13,7 +13,7 @@ export const configProvider = {
       password: process.env.DATABASE_PASSWORD,
       host: process.env.DATABASE_HOST,
       db: process.env.DATABASE_DB,
-      port: process.env.DATABASE_PORT,
+      port: Number(process.env.DATABASE_PORT),
     },
   },
 };
@@ -29,5 +29,5 @@ export interface AppConfigDatabase {
   password: string;
   host: string;
   db: string;
-  port: string;
+  port: number;
 }
