@@ -36,8 +36,14 @@ export class InPostgreSQLRepository {
 
   async createOrder(tickets: GetTicketDto[]): Promise<CreateOrderDto[]> {
     const orders = [];
+    const regex =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
     for (const ticket of tickets) {
+      if (!regex.test(ticket.film)) {
+        throw new BadRequestException('Incorrect data type of film');
+      }
+
       const session = await this.scheduleRepository
         .createQueryBuilder('schedule')
         .where('schedule.filmId = :filmId', { filmId: ticket.film })
