@@ -1,30 +1,38 @@
 import { Module } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { ConfigModule } from '@nestjs/config';
 import * as path from 'node:path';
-import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { FilmsModule } from './films/films.module';
+import { OrderModule } from './order/order.module';
+import { Film } from './films/entities/film.entity';
+import { Schedule } from './films/entities/schedule.entity';
+import 'dotenv/config';
 import { configProvider } from './app.config.provider';
-import { FilmsController } from './films/films.controller';
-import { FilmsService } from './films/films.service';
-import { OrderController } from './order/order.controller';
-import { OrderService } from './order/order.service';
-import { RepositoryData } from './repository/repository.data';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env',
       isGlobal: true,
       cache: true,
     }),
-    MongooseModule.forRoot(process.env.DATABASE_URL),
-    // @todo: Добавьте раздачу статических файлов из public
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.DATABASE_HOST,
+      port: Number(process.env.DATABASE_PORT),
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_DB,
+      entities: [Film, Schedule],
+      synchronize: true,
+    }),
+    FilmsModule,
+    OrderModule,
     ServeStaticModule.forRoot({
       rootPath: path.join(__dirname, '..', 'public'),
     }),
   ],
-  controllers: [FilmsController, OrderController],
-  providers: [configProvider, FilmsService, OrderService, RepositoryData],
+  providers: [configProvider],
 })
 export class AppModule {}
