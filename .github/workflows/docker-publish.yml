@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME_PREFIX: IvanKiryukhin19
+  IMAGE_NAME_PREFIX: ivankiryukhin19
 
 jobs:
   build-and-push:

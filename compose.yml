@@ -3,7 +3,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: ghcr.io/kiryukhinin/film-react-nest/backend:latest
+    image: ghcr.io/ivankiryukhin19/film-react-nest/backend:latest
     container_name: backend
     env_file:
       - backend/.env
@@ -17,7 +17,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    image: ghcr.io/kiryukhinin/film-react-nest/frontend:latest
+    image: ghcr.io/ivankiryukhin19/film-react-nest/frontend:latest
     container_name: frontend  
     networks:
       - app-network
@@ -30,7 +30,7 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile
-    image: ghcr.io/kiryukhinin/film-react-nest/nginx:latest
+    image: ghcr.io/ivankiryukhin19/film-react-nest/nginx:latest
     ports:
       - "80:80"
     volumes:
